@@ -1,0 +1,151 @@
+1 学些目标（*****）
+    1）安装express框架的 脚手架 express-generator
+    2) 学会使用 express 命令 创建项目工程目录
+    3）理解清楚项目工程目录每个文件夹是做什么的
+    4）学会分配路由 和 使用路由
+    5）学会整个框架的使用方法
+
+2 express是什么？
+    express是一个nodejs的框架（后端框架）主要帮助我们创建服务器
+
+3 express的简单使用（了解 体验一下）
+    1）创建一个文件夹 在文件夹中进入 DOS（终端） 初始化生成 package.json
+        npm init
+
+    2） 局部安装 express 且 保存到依赖列表
+        cnpm i express --save
+    3) 新建一个app.js文件 我们的代码就写在这个文件中
+        a) 引入express模块 
+            const express = require('express')
+
+        b) 使用express模块 创建一个应用对象
+            const app = express()
+
+        c) 之后所有的请求 都交给这个应用对象处理
+            app.get('路径', (req, res) => {
+                // req: request请求对象 （负责接收前端传过来的数据）
+                // res: response响应对象 （负责响应数据给前端）
+
+                // 备注：req和res今非昔比，是经过express封装的 功能要强大
+            })
+
+        d) 监听端口
+            app.listen(端口号, () => {
+                console.log('服务器启动成功，地址是：http://127.0.0.1:端口号')
+            })
+    
+    4）运行app.js文件 启动服务器
+        nodemon app
+
+4 express-generator脚手架的安装和使用 （掌握）
+    1）全局安装  express-generator
+        cnpm i express-generator -g
+
+    2) 使用 "express" 命令 创建项目目录
+        express -e 项目名     // -e的意思是使用ejs模板
+
+    3）进入项目目录 从项目目录进入 dos 一次性安装所有依赖
+        cnpm i
+
+    4) 启动项目
+        npm start // 默认启动是3000端口 不友好 而且没有自动重启的功能
+
+        改造启动方式***：
+            a) 在app.js的第 40 行 监听端口
+              app.listen(端口号, () => {
+                console.log('服务器启动成功，地址是:http://127.0.0.1:端口号')
+              })
+
+            b) 在 package.json 的script中 改造一下
+                    "scripts": {
+                        "start": "nodemon app"
+                    },
+
+            c) 启动项目
+                npm start
+
+5 安装完成过 以后每一次创建项目 按照以下步骤即可(掌握)
+    1）创建项目目录
+        express -e 项目名
+
+    2）进入项目目录 安装依赖
+        cnpm i
+
+    3) 改造启动方式 启动项目
+        a) app.js第 40 行 监听端口
+            app.listen(端口号, () => {
+                console.log('服务器启动成功，地址是:http://127.0.0.1:端口号')
+            })
+        b) package.json 改造启动方式
+            "scripts": {
+                "start": "nodemon app"
+            }
+
+        c) 启动项目
+            npm start
+
+6 项目目录详解（掌握）
+    bin           // 服务器的默认启动目录 改造启动方式后 就不用了
+    node_modules  // 下载的第三方模块
+    public        // 服务器的静态根目录 (放置的都是静态资源 html css js img )
+    routes        // 路由文件夹 （所有的后端代码 都在这个文件夹中 在node里 写后端代码就是写路由代码）
+    views         // 后端模板存放的位置（在我们的项目里面 这是ejs模板存放的位置）
+    app.js        // 整个应用的入口文件 （在里面启动服务器 分配路由...）
+    package.json  // 包描述文件
+
+7 路由详解（掌握）
+    1） 什么是路由？
+        前端浏览器发送一个请求给后端 发送请求的时候 肯定有 请求的地址
+        后端就可以使用路由 根据这个地址 接收前端浏览器的请求 且 响应一些数据给前端浏览器
+
+        专业： 路由定义了请求url和响应资源的一一对应关系
+
+8 响应对象res （掌握）
+    1）res： response响应对象，主要用于响应数据给前端浏览器（后端发送数据给前端）
+    2) 响应对象的常用方法
+    （*****）res.send()       // 响应数据给前端浏览器 万能方法 
+             res.json()       // 响应数据给前端浏览器 数据需要时 json 格式
+             res.jsonp()      // 响应数据给前端浏览器 数据需要时 json 格式 （只是一个语义化的方法 目的是用于 “跨域” 请求）
+
+    （**）  res.render('ejs模板', { JSON格式的数据 })     // 模板和数据合并 生成html 响应给前端浏览器
+            res.download()   // 响应前端的下载请求 
+            res.redirect()   // 重定向
+
+    小结： res响应对象常用方法
+           res.send() 
+           res.render()
+
+9 请求对象req （掌握）
+    1）req： request请求对象，主要用于接收前端发送过来的数据（接收前端数据）
+
+    2）请求对象常用方法
+        a) 接收前端 get方式 请求的参数 
+            req.query.参数名
+
+        b) 接收前端post方式请求的参数
+            req.body.参数名
+
+
+    补充***：
+        A 前端发送get方式的请求：
+            浏览器直接输入地址 点击回车
+            a标签跳转
+            location.href
+
+            表单提交
+            ajax (工作中都使用)
+
+        B 前端发送post方式请求
+            表单提交
+            ajax (工作中都使用)
+
+
+    
+        
+
+
+
+
+
+    
+

@@ -1,0 +1,22 @@
+﻿    1、 安装
+        >> cnpm i yarn -g
+        
+    2、 使用
+            本地：
+                    >> cnpm intsall 模块 -S/-D 
+               等价于>> yarn add 模块名 [-D]（默认就是S）
+            
+            全局:
+                   >> cnpm intsall 模块  -g
+                   >> yarn global add 模块
+
+            配置全局目录（重要！！）
+                 >>  yarn global bin
+                 把yarn全局地址，配置到"地址环境变量"
+
+                 注意：新配置的地址环境变量，只有在“重启命令行”后，才能生效！！
+
+            安装本地依赖
+                >>  cnpm i
+                >>  yarn 
+

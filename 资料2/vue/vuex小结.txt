@@ -1,0 +1,14 @@
+vuex是什么？
+    一种状态机，主要负责管理vue应用程序的交互状态，vue官方推出
+    vue + vue router + vuex
+
+vuex核心
+    store： 就是数据仓库，每个应用只能有一个store，所有交互数据都存放在store内
+
+
+核心概念
+    state：交互状态，所有需要交互的状态都定义在state内
+    mutation：同步通知，提交一个mutation是改变state的唯一方式！！！
+    action：异步通知，只要本次数据操作有异步（需要发送请求等），就必须写在action中
+    getter：计算者，和computed非常像，性能高，会缓存运算结果（只要数据源不发生变化）
+           vuex版的computed

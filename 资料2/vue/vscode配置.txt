@@ -1,0 +1,24 @@
+{
+    "window.zoomLevel": 1,
+    "git.ignoreMissingGitWarning": true,
+    "workbench.colorTheme": "Default Light+",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "powermode.enabled": true,
+    "powermode.enableShake": false,
+    //样式  
+     "powermode.presets": "fireworks",
+     "less.compile": {
+        "compress": false, // true => 压缩编译后的css
+        "sourceMap": false, // true => 自动生成source maps (.css.map files)
+        "out": "./dist/",// false => 关闭less编译功能； '文件地址||文件夹地址' ==>自动输出到指定文件或目录
+        },
+        "atomKeymap.promptV3Features": true,
+        "editor.multiCursorModifier": "ctrlCmd",
+        "editor.formatOnPaste": true
+        
+}

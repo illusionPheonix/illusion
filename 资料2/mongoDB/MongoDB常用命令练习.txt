@@ -1,0 +1,46 @@
+A 常用命令
+    show dbs              // 显示当前有哪些数据库（数据库中至少有一条数据 才能被显示）
+    db                    // 显示当前在哪个数据中
+    db.集合名.find()       // 查看当前集合中所有数据
+    show collections      // 查看当前数据库有哪些集合
+    use 数据库名           // 创建数据库 （如果这个数据库已经存在 那么直接使用 否则 就自动创建再使用）
+
+B 增加数据 
+    语法： 
+        db.集合名.insert({key1:value1,  key1: value3})
+        db.集合名.save({key1:value1,  key1: value3})
+
+    // 示例：
+    db.stu.insert({"name":"张三", "age": 19, "sex": "女"})
+    db.stu.save({"name":"李四", "age": 20, "sex": "男"})
+
+    区别： 如果插入的数据已经存在（id相同才叫存在），insert方法会报错，不能插入数据，
+            而 save() 方法，会直接把原来的数据覆盖。
+
+    // 插入一条id相同的数据
+    db.stu.insert({"_id": ObjectId("5c9f0a2654f4dfd7bddc75f6"),"name":"老王", "age": 35, "sex": "男"}) // 报错
+    db.stu.save({"_id": ObjectId("5c9f0a2654f4dfd7bddc75f6"),"name":"老王", "age": 35, "sex": "男"}) // 覆盖
+
+C 删除数据 
+    1）删除文档（删JSON数据）
+        a)  db.集合名.remove({})                // 删除集合中所有数据
+        b)  db.集合名.remove({"key": "value"})  // 删除满足条件 key=value 的数据
+
+    2）删除集合
+        db.集合名.drop()
+
+    3）删除数据库(慎重 ！！！ 先检查你当前在哪个数据库)
+        db.runCommand({"dropDatabase": 1})
+
+D 修改数据 
+    db.集合名.update({key: value}, {key: value}) // 第一个大括号是要修改的数据的查询条件 第二个是修改后的“新”内容
+    示例：db.student.update({"name": "张三"}, {"sex": "女"}) 
+
+    // 保留其他字段 （只是修改对应的字段）
+    db.集合名.update({key: value}, {$set: { key: value }}) 
+    示例： db.student.update({"name":"李四"}, {$set: { "sex":"不详"}})
+
+E 查询数据 
+    db.集合名.find()           // 查询集合下所有数据
+    db.集合名.find().pretty()  // 查询集合下所有数据 且 对查询结果格式化 （记住 字段多一些才有效果哦）
+    db.集合名.findOne()        // 查询集合下的第一条数据

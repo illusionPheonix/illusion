@@ -1,0 +1,51 @@
+空电脑怎么办？
+
+先搭软件环境：
+	Chrome，FF
+	VS code  （H5builder，Atom， Sumbine）
+	nodejs，yarn安装
+	根据自己喜欢安装美术类软件PS等
+	SVN或GIT
+
+	（把常用软件准备一份到U盘内）
+
+
+
+搭建React环境：
+	一、react安装下载
+	      1.  全局安装react脚手架
+		yarn global add create-react-app
+	      2. 使用脚手架创建项目
+	 	create-react-app 项目名
+	      3. 启动项目
+		cd 目录       yarn start启动
+	
+	二、项目清理，企业级目录建立
+		src
+			assets     静态资源
+				fonts 字体
+				styles 全局样式
+				imgs 图片
+			api           所有请求封装的文件夹
+			components  公共组件
+			pages 	页面
+				App.js    入口组件
+			index.js     入口JS文件
+
+	 三、Ant Design UI框架安装
+	       1. 下载安装
+		yarn add antd-mobile -S
+	       2. 引入全局css样式
+		import 'antd-mobile/dist/antd-mobile.css'
+	       3. 要用什么组件，直接引入实例化即可
+		import { Button } from 'antd-mobile'
+		<Button>点我点我</Button>
+
+	四、React Router安装
+	       1. 下载安装
+		yarn add react-router-dom@4.3.0
+	       2. 引入核心组件
+		HashRouter Switch Route Link
+	       3. 配置使用 
+	
+

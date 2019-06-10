@@ -1,0 +1,42 @@
+1 注册
+    请求url:   http://172.16.12.254:5000/register
+    请求类型:  post
+    参数:  
+        account   // 账号
+        password  // 密码
+ 
+    返回类型:   json
+    返回示例： 
+        {
+            code: number   // 0: 成功 1失败
+            msg:  String   // 提示信息
+        }
+
+2 检查注册用户名是否存在
+    请求url:   http://172.16.12.254:5000/isaccountexist
+    请求类型:  get
+    参数:  
+        account   // 账号
+ 
+    返回类型:   json
+    返回示例： 
+        {
+            code: number   // 0: 成功 1失败
+            msg:  String   // 提示信息
+        }
+
+3 登录
+    请求url:   http://172.16.12.254:5000/checklogin
+    请求类型:  post
+    参数:  
+        account   // 账号
+        password  // 密码
+ 
+    返回类型:   json
+    返回示例： 
+        {
+            code: number   // 0: 成功 1失败
+            msg:  String   // 提示信息
+        }
+
+

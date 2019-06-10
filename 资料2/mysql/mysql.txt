@@ -1,0 +1,52 @@
+1 学习目标
+    1）安装成功MySQL
+    2）基本命令 CRUD (掌握)
+    3）Mysql的一些查询条件
+
+2- 数据库概述（了解）
+    1）什么是数据库？
+        是安装一定的数据结构来组织、存储、管理数据的仓库
+
+    2）数据库的分类
+        a) 关系型数据库
+            关系型数据库 =》 表（二维表） =》 行 （字段数据）
+
+        b) 非关系型数据库
+            非关系型数据库 =》 集合 =》 文档（JSON格式数据）
+
+3 mysql的一些常用术语（掌握）
+    数据库：  database
+    表：      table
+    行：      row
+    列：      column
+    记录：    record  // 一行数据就叫一个记录
+    SQL:     结构化查询语言, 操作关系数据库的 "通用" 语言
+
+
+4 常用数据类型
+    // 数字类型
+    // 整数
+    create table `test01` (
+        `a` tinyint unsigned,
+        `b` smallint,
+        `d` int
+    );
+
+    // 小数
+    create table `test02` (
+        id int primary key auto_increment,
+        f1 float(5, 2), 
+        f2 double(10, 2)
+    );
+
+    // 字符串 和 时间戳
+    create table `test03` (
+        id int primary key auto_increment,
+        ctime timestamp default current_timestamp,
+        name varchar(30), 
+        `mydesc` text
+    );
+
+
+
+

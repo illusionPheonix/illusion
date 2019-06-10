@@ -1,0 +1,57 @@
+1 学习目标
+    1）使用mongoose模块 对数据库进行 增删改查
+    2）理解清楚  新闻发布系统  的完整逻辑
+    3）完成 新闻 发布系统的 两个功能 （ 新增新闻功能  显示新闻列表功能 ）
+    4）作业 （实现一个留言板功能）
+
+2 mongoose的基本使用
+    1）什么是mongoose 
+        它是nodejs的一个第三方模块，主要是用来操作 MongoDB 数据库的
+
+    2）要使用mongoose怎么办？
+        a) 下载
+            cnpm i mongoose --save
+
+        b) 引入 
+            const mongoose = require('mongoose')
+
+
+3 如何使用mongoose连接数据库
+    1) 下载
+        cnpm i mongoose --save
+
+    2) 引入
+        const mongoose = require('mongoose')
+
+    3) 连接数据库
+        mongoose.connect('mongodb://127.0.0.1:27017/数据库名', (err) => {
+            if (err) throw err;
+            console.log('数据库连接成功')
+        })
+
+        参数详解：
+        connect:     连接数据库的方法名
+        mongodb://   协议
+        127.0.0.1    本地地址
+        :27017       MongoDB默认端口号
+        数据库名      你要连接的数据库的名字 如果有直接连接 如果没有自动创建再连接
+
+4 想要操作数据库 需要走三步
+    1）定义骨架 （定义我们需要操作的字段 和 字段的类型）骨架本身不具备操作数据库的能力
+        const userSchema = new mongoose.Schema({
+            name: String,
+            age:  Number
+        })
+
+    2）使用骨架来发布模型 （模型主要用于 “查询” 数据）
+        const userModel = mongoose.model('user', userSchema,'user')
+        参数详解：
+            参数1： 模型名，占位，一般和第三个相同即可
+            参数2： 骨架名
+            参数3： 集合名
+
+
+    3）使用模型来创建实体对象 （实体主要用于 “增加” 数据）（这一步不是必须 哪里使用 哪里创建）
+        const intance = new userModel();
+
+

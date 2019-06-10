@@ -1,0 +1,44 @@
+vue-router专门负责组件切换
+根据url hash值的变化，进行组件切换
+
+
+使用步骤
+    1. 下载安装
+        yarn add vue-router -D
+    2. 创建router配置文件（一般叫router.js）
+        // 1. 引入核心模块，并全局注册
+        import Vue from 'vue'
+        import VueRouter from 'vue-router'
+
+        Vue.use(VueRouter)
+        // 2. 配置路由对象
+        export default new VueRouter({
+            routes: [
+                //具体的路径对象
+                {
+                    path: '/',   //匹配的url
+                    component: XXX  //匹配成功后加载的组件
+                },
+                ...
+            ]
+        })
+
+
+    // 3. 暴露路由对象，并在main.js中进行路由绑定
+    export default new VueRouter({
+    })
+
+    //main.js
+    import router from './router'
+
+    new Vue({
+        render: h => h(App),
+        //key固定就叫router
+        router
+    }).$mount('#app')
+
+
+    //隐藏步骤
+    在APP或其他组件，放置一个路由出口，用来显示组件的切换
+    <!-- 放置一个路由出口 -->
+    <router-view></router-view>

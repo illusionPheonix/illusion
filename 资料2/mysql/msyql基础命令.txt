@@ -1,0 +1,82 @@
+1 进入数据库
+    mysql -u账号 -p密码    // mysql -uroot -proot
+
+2 数据库的操作
+    1） 创建数据库
+        create database 数据库名[charset=utf8];
+
+    2） 查看当前有哪些数据库
+        show databases;
+
+    3） 使用数据库
+        use 数据库名;
+
+    4） 删除数据库
+        drop database 数据库名;
+
+    5） 修改数据库选项(一般是修改编码 默认就是utf8 所以不修改)
+        alter database 数据库名 charset=gbk;
+
+    6） 查看建库语句（主要是查看编码信息）
+        show create database 数据库名;
+
+3 表的操作
+    1) 创建表
+        create table `表名` (
+            `字段1` 数据类型 [修饰符],
+            `字段2` 数据类型 [修饰符],
+            `字段3` 数据类型 [修饰符]
+        )[charset=utf8];
+
+        create table `stu` (
+            id int primary key auto_increment,
+            name varchar(50),
+            sex varchar(10),
+            sno int
+        );
+
+        create table `teacher` (
+            id int primary key auto_increment,
+            name varchar(50),
+            sex varchar(10),
+            tno int
+        );
+
+    2) 查看当前数据库中有哪些表
+        show tables;
+
+    3) 查看表结构
+        desc 表名;
+
+    4) 查看建表语句（主要是查看编码信息）
+        show create table 表名;
+
+    5) 删除表
+        drop table [if exists] 表名;
+
+    6) 修改表选项（一般是修改编码 默认就是utf8 所以不修改）
+        alter table 表名 charset=utf8;
+
+
+4 记录(数据)的操作 （*****）
+    1） 增加数据 
+        语法：insert into 表名(字段列表) values(值列表);
+        代码：insert into `stu`(name, sex, sno) values('张三', '男', 123);
+
+        简写：insert into `stu` values(default ,'李寻欢', '男', 223); (不推荐)
+
+        备注：有些系统的dos不能插入中文 请 set names gbk;  然后再插入
+
+    2） 删除数据
+        语法： delete from 表名 [where 条件]  // 条件可写可不写 如果不写 代表删除所有数据
+        代码： delete from stu where sex='女';
+
+    3） 修改数据
+        语法： update 表名 set 字段1=新的值1, 字段2=新的值2 [where 条件]
+        代码： update stu set name='张三疯', sex='女' where id=5;
+
+    4） 查询数据
+        语法： select 字段列表 from 表名 [where 条件]; // 如果字段列表写为 * 代表查询所有字段
+        代码： select * from stu;
+
+

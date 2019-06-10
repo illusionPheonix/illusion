@@ -1,0 +1,23 @@
+A vue项目中集成echarts
+    1 下载echarts
+        cnpm i echarts --save
+
+    2 在入口文件 main.js中引入echart 且 挂载在原型上
+        import echarts from 'echarts'
+
+    3 所有组件中都可以使用 echarts
+        this.echarts  // 代表echarts
+
+B 使用echarts的步骤
+    1 引入 （入口文件已经引入）
+    2 准备一个容器div 要具备宽高
+    3 使用echarts生成报表
+        a) 初始化
+            let mycharts = this.echarts.init(选中容器的的DOM)
+
+        b) 写配置
+            let option = { // 查官网
+            }
+
+        c) 使用配置生成报表
+            mycharts.setOption( option )

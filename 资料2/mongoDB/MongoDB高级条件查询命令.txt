@@ -1,0 +1,70 @@
+语法1：db.collection.find({ "key" : value })    查找key=value的数据.
+例1：查找女歌星。
+代码： db.list.find({"sex": "女"}).pretty()
+
+语法2： db.collection.find({ "key" : { $gt: value }})    key > value
+例2：查找年龄大于53的歌星。
+代码： db.list.find({ "age": { $gt: 53 }}).pretty()
+
+语法3：db.collection.find({ "key" : { $lt: value } })    key < value
+例3：查询年龄小于35岁的歌星。
+代码： db.list.find({ "age": { $lt: 35 }}).pretty()
+
+语法4：db.collection.find({ "key" : { $gte: value } })    key >= value
+例4：查询成绩大于等于95的歌星。
+代码： db.list.find({ "score": { $gte: 95 }}).pretty()
+
+
+语法5：db.collection.find({ "key" : { $lte: value } })    key <= value
+例5：查询年龄在小于等于32岁的歌星。
+代码： db.list.find({ "age": { $lte: 32 }}).pretty()
+
+语法6：db.collection.find({ "key" : { $gt: value1 , $lt: value2 } })   value1 < key < value2
+例6：查找年龄在30-40岁之间的歌星。
+代码:  db.list.find({"age": { $gt: 30, $lt: 40 }}).pretty()
+
+语法7：db.collection.find({ "key" : { $ne: value } })    key <> value
+例7：查询外国歌手。
+代码： db.list.find({"country": { $ne: "中国"}}).pretty()
+
+语法8：db.collection.find({ "key" : { $mod : [ 10 , 1 ] } })   
+// 取模运算，条件相当于key % 10 == 1 即key除以10余数为1的
+例8：查询成绩为5 、15、25、。。。。95的歌星。
+代码： db.list.find({"score": { $mod: [10, 5]}}).pretty()
+
+语法9：db.collection.find({ "key" : { $in: [ 1, 2, 3 ] } })   
+// 属于，条件相当于key等于[ 1, 2, 3 ]中任何一个.
+例9：查询序号（num）为3或者6或者9的歌星。
+代码： db.list.find({"num": { $in: ["3", "6", "9"]}}).pretty()
+
+语法10：db.collection.find({ "key" : { $nin: [ 1, 2, 3 ] } })    
+// 不属于，条件相当于key的值不属于[ 1, 2, 3 ]中任何一个。
+例10：查询国籍不为美国和韩国的歌手。
+代码： db.list.find({"country": { $nin: ["美国", "韩国"]}}).pretty();
+
+
+语法11：db.collection.find({ "key" : { $size: 1 } })    
+// $size 数量、尺寸，条件相当于key对应的值的数量是1（值必须是数组）
+例11：查询有3个代表作品的歌手。
+代码： db.list.find({"works": { $size: 3}}).pretty()
+
+语法12：db.collection.find({ "key" : { $exists : true|false } })    
+// $exists 字段存在，true返回存在字段key的数据，false返回不存在字段key的数据
+例12：查询包含tel字段的数据。
+代码： db.list.find({"tel": { $exists: true}}).pretty() // 包含tel字段
+代码： db.list.find({"tel": { $exists: false}}).pretty() // 不包含tel字段
+
+
+语法13：db.collection.find({ $or : [{a : 1}, {b : 2} ] }) 
+例13: 查询刘德华和所有女歌手
+代码： db.list.find({$or: [{"name":"刘德华"}, {"sex":"女"}]}).pretty()
+
+
+语法14： 根据对象的属性查询
+// 插入一条数据
+db.scoretotal.insert({"name":"test", "score": {"yw":80, "sx":79, "wy":95}})
+db.scoretotal.insert({"name":"test", "score": {"yw":70, "sx":79, "wy":95}});
+db.scoretotal.insert({"name":"test", "score": {"yw":95, "sx":79, "wy":95}});
+
+代码： 查询语文成绩为80的同学
+db.scoretotal.find({"score.sx": 79}).pretty()

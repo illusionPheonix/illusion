@@ -1,0 +1,198 @@
+1 Buffer（了解）
+    1） 什么是buffer？
+        是一个临时的内存区域，主要用于存储字节码（二进制）数据
+
+    2）buffer的创建（三种方式）
+        a)  指定大小(多少字节)
+            var buf1 = new Buffer( 10 );
+
+        b)  指定数组（对应的asc编码）
+            var bf2 = new Buffer( [97,61,62,63,122] )
+
+        c)  指定字符串（字符串就是存入的内容）
+            var buf3 = new Buffer("www.itsource.com", "utf-8")    
+
+
+    3） buffer缓存区的三个方法
+        a) 写入内容
+            buf.write('要写入的内容')
+
+        b) 读取内容
+            buf.toString() 
+
+        c) 拷贝内容
+            源.copy( 目标 )
+
+2 fs模块（掌握）
+    1）fs模块是什么？
+        文件系统模块，主要提供了很多的方法，可以对文件和文件夹进行操作（读、写、删除等等）
+
+        说明***：
+            a) 基本上fs模块的方法都有同步和异步两个，一般同步方法只需要在异步方法后面加 Sync
+            b) 异步操作的方法，基本上第二个参数都是一个函数。
+               函数中，第一个参数是错误，第二个参数是数据
+
+    2）文件的读取(读取内容)
+        a)  异步读取
+            fs.readFile('要读取文件的路径', (err, data) => {
+                if (err) throw err;
+                console.log( data ) // data就是读取到的数据
+           })
+
+        b) 同步读取
+            let data = fs.readFileSync('要读取文件的路径')
+
+    3) 读取文件的信息
+        a) 异步方法
+            fs.stat('要读取文件的路径', (err, stats) => {
+                if (err) throw err;
+                console.log( stats )
+            })
+
+        b) 同步方法
+            let stats = fs.statSync('要读取文件的路径')
+
+        注意***：
+        读取文件信息 主要是为了使用两个方法
+            isDirectory() // 是否是目录 （文件夹）
+            isFile()    // 是否是文件
+    4）写文件
+        a) 异步写
+            fs.writeFile('要写入的文件路径', '要写入的数据', (err) => {
+                if (err) throw err;
+                console.log( "写入成功" )
+            })
+
+        b) 同步写
+            fs.writeFileSync('要写入的文件路径', '要写入的数据')
+
+    5) 删除文件
+        a) 异步删除
+            fs.unlink('要删除文件的路径', (err) => {
+                if (err) throw err;
+                console.log('删除成功')
+            }) 
+
+        b) 同步删除
+            fs.unlinkSync('要删除文件的路径')
+    6) 获取目录中的文件
+        a) 异步
+            fs.readdir('要获取的目录', (err, files) => {
+                if (err) throw err;
+                console.log( files )  // 获取的结果是一个数组
+            })
+
+        b) 同步
+            let files =  fs.readdirSync('要获取的目录')
+
+    7) fs创建文件夹
+        a) 异步
+            fs.mkdir('要创建的文件夹的路径', (err) => {
+                if (err) throw err;
+                console.log("创建成功")
+            })
+
+        b) 同步
+            fs.mkdirSync('要创建的文件夹的路径')
+            console.log("创建成功")
+
+    8) 删除空文件夹
+        a) 异步
+            fs.rmdir('要删除的空文件夹目录', (err) => {
+                if (err) throw err;
+                console.log( "删除成功" )
+            })
+
+        b) 同步
+            fs.rmdirSync('要删除的空文件夹目录')
+
+3 fs流读写
+    1） 什么是流读写
+        数据以字节的方式进行传输
+
+    2）流读取
+        // 创建读取流
+        let readStream = fs.createReadStream('要读取的文件的路径')
+
+        // 监听data类型事件 （读取的过程中 每读取64kb 自动触发一次）
+        readStream.on('data', (readData) => {
+            // readData 就是读取到的内容
+        })
+
+        // 监听end类型事件 （读取结束 自动触发）
+        readStream.on('end', () => {
+            // 只要这个函数触发 就证明读取过程结束
+        })
+
+        // 监听读取错误事件 （如果读取的过程中出错 自动触发）
+        readStream.on('error', (err) => {
+            // err就是错误信息
+        })
+
+
+    3）流写入
+        // 创建写入流
+        let writeStream = fs.createWriteStream('要写入的文件的路径')
+
+        // 写入内容
+        writeStream.write('写入的内容')
+        writeStream.end();   // 写入结束的标识
+
+        // 监听写入完成的事件
+        writeStream.on('finish', () => {
+            // 写入完成 自动触发
+        })
+
+        // 监听写入过程中错误事件
+        writeStream.on('error', (err) => {
+            // err 就是写入的错误
+        })
+
+    4) 管道流
+        // 创建读取流
+        let readStream = fs.createReadStream('要读取的文件的路径')
+
+        // 创建写入流
+        let writeStream = fs.createWriteStream('要写入的文件的路径')
+
+        // 管道流
+        readStream.pipe( writeStream )
+
+
+    5) 链式流
+        var zlib = require("zlib");
+
+        // 创建读取流
+        let readStream = fs.createReadStream('要读取的文件的路径')
+
+        // 创建写入流
+        let writeStream = fs.createWriteStream('要写入的文件的路径')
+
+        // 链式流
+        readStream.pipe(  zlib.createGzip() ).pipe( writeStream )
+
+4 path模块： 这是系统内置模块 主要用于操作路径
+    // 路径的规范
+        path.normalize()
+
+    // 连接路径
+        path.join()
+
+    // 目录名
+        path.dirname()
+
+    // 文件名
+        path.basename()
+
+    // 扩展名
+        path.extname()
+
+5 url模块
+    1）主要是用于操作网址的
+
+    2）地址是一个字符串 在url模块中有两个方式 可以把字符串转为对象
+    let testUrl="http://www.uml.org.cn/DevProcess/images/20076614557200.jpg?username=admin&password=123#pid=123";
+
+    const myUrl = new URL( testUrl )  // 把这个地址字符串改为对象
+    const myUrl = url.parse( testUrl ) // 把这个地址字符串改为对象
+

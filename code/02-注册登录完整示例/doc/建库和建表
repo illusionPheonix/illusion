@@ -1,0 +1,10 @@
+1. 建库
+    create database admin;
+
+
+2. 建表
+    create table `users` (
+        id int primary key auto_increment,
+        account varchar(50),
+        password varchar(50)
+    );

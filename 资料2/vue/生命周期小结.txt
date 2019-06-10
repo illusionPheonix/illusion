@@ -1,0 +1,25 @@
+生命周期分为四大阶段
+
+创建阶段: 数据挂载，内部事件初始化
+    beforeCreate: 通知，组件数据和事件将要初始化
+    created: 通知，data数据 和事件 初始化完毕！
+
+挂载阶段: 翻译template为html，挂载到el容器内
+    beforeMount: 通知，组件template翻译完毕，可以开始挂载
+    mounted: 通知，组件挂载完毕！可以看到并获取节点！
+
+//挂载阶段完成后，用户就可以在屏幕上看到页面了！
+
+更新阶段: 等待用户交互，改变data并更新页面
+    beforeUpdata: 通知，data发生改变，可以开始更新
+    updated: 通知，页面重新渲染完毕！
+
+销毁阶段: 组件的移除，需要手动清除所有（定时器等耗内存）
+    防止内存泄漏！！！！
+    beforeDestroy: 通知，组件将要销毁
+    destroyed： 通知，组件销毁完毕 （资源回收再此处进行）
+
+最重要
+    created: 初始化ajax发送
+    mounted: 获取操作DOM节点
+    destroyed: 资源回收，性能优化！！！

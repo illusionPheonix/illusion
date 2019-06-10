@@ -1,0 +1,44 @@
+1. websocket
+    1. H5提供的一个对象，可以实现浏览器和服务器双向通信。
+
+    2. 使用方法
+        a. 创建websoket连接
+            语法：const ws = new WebSocket('请求的地址')
+
+        b. 常用事件
+            ws.onopen = function () {
+                // 建立连接的时候触发
+            }
+
+            ws.onmessage = function () {
+                // 接收到服务器推送的数据触发
+            }
+
+            ws.onerror = function () {
+                // 连接发生错误触发
+            }
+
+            ws.onclose = function () {
+                // 连接关闭的时候触发
+            }
+
+        c. 常用方法
+            ws.send(数据)   // 把数据发给服务器
+            ws.close()      // 关闭连接
+
+
+2 socket.io是nodejs的一个模块，集成了websocket
+    这个库前端和后端都有，是通用的
+    用法：
+        a. 发送信息 
+            socket.emit('自定义事件类型', '要发送的信息')
+
+        b. 接收信息
+            socket.on('自定义事件类型', (data) => {
+                // data就是接收到的数据
+            })
+
+        c. 广播信息（给每一个连接的用户 都发送信息）
+            io.sockets.emit('自定义事件类型', '发送出去的数据');
+
+

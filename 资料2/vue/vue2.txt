@@ -1,0 +1,149 @@
+1 学习目标
+    1）vue-cli脚手架
+    2）vue组件
+    3）vue路由
+    4）elementUI
+
+2 Vue-cli 3.x 的使用
+    1）安装
+        cnpm i -g @vue/cli
+
+        备注：安装完成以后 就可以使用 vue 命令
+
+    2）使用vue命令 创建项目的目录
+        vue create 项目名
+
+    3) 进入项目目录 启动项目
+        npm run serve
+
+3 目录详解
+    1）整个目录
+        node_modules    // 第三方模块
+        public          // 服务器根目录
+        src             // src就是我们的开发目录（也就是说我们开发的代码都放在src目录中）
+
+        .gitignore          // git提交的忽略列表
+        babel.config.js     // babel 配置文件
+        package-lock.json   // 包描述文件 记录依赖模块的版本信息
+        package.json        // 包描述文件 记录依赖模块版本
+
+        README.md           // 项目文档
+
+    2）src目录
+        assets     // 主要是一些静态资源 图片 css 字体 
+        components // 组件（一般是放公用的组件）
+        views      // 组件（页面级别的组件）
+
+        main.js    // 整个项目的入口文件
+        App.vue    // 整个应用的顶级组件
+        router.js  // 整个项目的路由分配
+
+4 组件：  把具有特定功能的html/css/js代码 封装在一个.vue文件中 就是组件
+         使用组件的时候 可以通过自定义的标签名直接使用（可以是单/双标签）
+
+    1）单文件组件 都是以 “.vue” 结尾
+
+    2）每个组件的组成分为三个部分
+        <template>
+            // 这里写html模板结构 （注意：有且仅有一个根节点）
+        </template>
+        <script>
+            // 这里写js
+            export default {        // 这里暴露的是一个vue实例对象
+                props: {            // 用于接收父组件传入的数据
+                },
+                data () {           // 组件本身的数组
+                    return {
+                    }
+                },
+                methods: {           // 组件内的函数
+                },
+                components: {       // 注册组件
+                },
+                filter: {           // 过滤器
+                },
+                computed: {         // 计算属性
+                }
+            }
+        </script>
+        <style>
+            // 这里写css样式 （也可写less scss stylus）
+        </style>
+
+    3) es6中导出和导入
+        // 导出
+        export default 要导出的内容
+
+        // 导入
+        import 变量名 from '要导入的内容'
+
+    4）组件中的数据必须是函数
+
+    5）使用抽取组件 三大步
+        a) 引入组件
+        b) 注册组件
+        c) 使用组件
+ 
+    6） 组件中的数据传递  父 =》 子
+        a) 父组件通过 v-bind 给自定义属性绑定数据
+        b) 子组件通过 props 接收
+
+5 路由
+    路由主要是定义了 url 和 component的一一对应关系
+    一个url 就 对应一个 页面级别的组件
+    1）基本配置
+        new Router({
+            // 路由配置
+            routes: [
+                {
+                    path: '/',      // 路径
+                    component: () => import('./views/Home/Home.vue')  // 组件
+                },
+                {
+                    path: '/about',      // 路径
+                    component: () => import('./views/About/About.vue')  // 组件
+                }
+            ]
+        })
+
+    2）嵌套路由
+        new Router({
+            // 路由配置
+            routes: [
+                {
+                    path: '/',      // 路径
+                    component: () => import('./views/Home/Home.vue')  // 组件
+                },
+                {
+                    path: '/about',      // 路径
+                    component: () => import('./views/About/About.vue'),  // 组件
+                    children: [
+                        {
+                            path: '/about/us',      // 路径
+                            component: () => import('./views/Us/Us.vue')  // 组件
+                        },
+                        {
+                            path: '/about/company',      // 路径
+                            component: () => import('./views/Company/Company.vue')  // 组件
+                        }
+                    ]
+                }
+            ]
+        })
+    3）redirect： 重定向
+
+6） vue项目中集成element-ui
+    1) 安装element-ui
+        cnmp i element-ui --save
+
+    2) 在入口文件 main.js 中引入 和 注册
+        import ElementUI from 'element-ui' // 组件
+        import 'element-ui/lib/theme-chalk/index.css' // 样式
+
+        Vue.use(ElementUI) // 注册
+
+
+
+
+
+        

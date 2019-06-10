@@ -1,0 +1,31 @@
+1 express 
+    1. 是nodejs的一个框架，可以快速创建服务器
+
+2 express-generator(脚手架，安装好了以后可以使用express命令快速创建项目目录)的安装
+    cnpm i -g express-generator
+
+3 express创建项目步骤
+    1. express -e 项目名
+
+    2. 进入项目 安装依赖
+        cnpm i
+
+    3. 监听端口（40行）
+        app.listen(端口号, () => {
+            console.log('成功: http://127.0.0.1:端口号')
+        })
+
+    4. 改造package.json
+        "scripts": {
+            "start": "nodemon app"
+        }
+
+    5. 启动项目
+        npm start
+
+    注意***：需要全局安装nodemon才可以使用nodemon命令,nodemon代替node命令可以自动重启服务器 ！！！
+        cnpm i -g nodemon
+
+
+
+    

@@ -1,0 +1,72 @@
+﻿常用where条件
+    =                   等于
+    <>                  不等于
+    >                   大于
+    >=                  大于等于
+    <                   小于
+    <=                  小于等于
+
+    between x and y     在 x 和 y 之间
+    and                 且
+    or                  或
+    in                  in子句 （在xxx里面）
+    order by            排序 asc (默认 升序)  desc 降序
+    
+    like                模糊匹配
+    limit m, n          跳过 m 条， 输出n条
+    
+
+    代码:
+    // 查询 sno 等于 18
+    select * from stu where sno = 18;
+
+    // 查询 sno 不等于 18
+    select * from stu where sno <> 18;
+
+    // 查询 sno 大于18
+    select * from stu where sno > 18;
+
+    // 查询 sno 大于等于18
+    select * from stu where sno >= 18;
+
+    // 查询 sno 小于18
+    select * from stu where sno < 18;
+
+    // 查询 sno 小于等于18
+    select * from stu where sno <= 18;
+
+
+    // 查询 sno 在 17 到 20 之间
+    select * from stu where sno between 17 and 20;
+    
+    // 查询 sno 大于 18 且 sex 为 女
+    select * from stu where sno>18 and sex='女';
+
+
+    // 查询 sno 大于 18 或 sex 为 女
+    select * from stu where sno>18 or sex='女';
+
+    // 查询 sno 为 16, 19, 21
+     select * from stu where sno in (16, 19, 21);
+
+
+    // 查询 按照 sno 排序
+    select * from stu order by sno;  // 默认升序 asc （默认）
+
+    select * from stu order by sno desc; // desc 降序
+
+    // 跳过 2条 输出 2条
+    select * from stu limit 2, 2;
+
+    // like 的基本使用
+    // 查询 name 以 李开头的
+    select * from stu where name like '李%';
+
+    // 查询 name 以 李结尾的
+    select * from stu where name like '%李';
+
+    // 查询 name 包含李
+    select * from stu where name like '%李%';
+
+
+    

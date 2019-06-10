@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多人聊天室</title>
+    <link rel="stylesheet" href="./css/chat.css">
+</head>
+<body>
+    
+    <!-- 登录界面 -->
+    <div class="login-wrap">
+        <div class="login">
+          <h3>用户登录</h3>  
+          <p>用户名:<input id="user-name" type="text"></p>
+          <p><button id="login-btn">登录</button></p>
+        </div>
+    </div>
+
+    <!-- 聊天界面 -->
+    <div class="chat-wrap">
+        <div class="chat">
+            <div class="header">多人聊天室</div>
+            <div class="center">
+               <div class="info">
+                   <!-- <p><span>系统提示：李寻欢加入群聊!</span> </p> -->
+               </div>
+               <!-- <p class="left-msg">
+                   <span>张三</span>
+                   <span>哈哈哈哈 开心!</span>
+               </p>
+               <p class="right-msg">
+                   <span>呵呵呵 开心!</span>
+                   <span>李四</span>
+               </p> -->
+            </div>
+            <div class="footer">
+                <input type="text" class="msg">
+                <button class="sendBtn">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入js资源文件 -->
+    <script src="./js/jquery.js"></script>
+    <script src="./js/socket.io.js"></script>
+    <script src="./js/chat.js"></script>
+</body>
+</html>
